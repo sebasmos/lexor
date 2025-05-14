@@ -8,7 +8,7 @@ import json
 
 device_id = 0
 device = torch.device(f"cuda:{device_id}")
-
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:64'
 # ──────────────────────────────────────────────────────────────────
 # NEW ➜  make sure output_latest/ exists
 output_dir = 'output_latest'
@@ -93,7 +93,7 @@ def validation(model_val, val_dataloader, processor):
         # import pdb; pdb.set_trace()
         mean_bbox_dice = torch.stack(bbox_dice_list).mean()
 
-        print(f'[{idx}/{len(val_dataloader)}]bbox_dice: {mean_bbox_dice:.4f}')
+        print(f'[{idx}] bbox_dice: {mean_bbox_dice:.4f}')
         # ---- NEW ➜ save every volume once, keeping the same base-name
         base_name = os.path.splitext(os.path.basename(data_item['file_path']))[0]
         out_path  = os.path.join(output_dir, f"{base_name}.npz")
@@ -132,6 +132,7 @@ if __name__ == '__main__':
         batch_size=1,
         shuffle=False,
         num_workers=0,
+        pin_memory=False,
         collate_fn=lambda x: x
     )
-    validation(model_val, val_dataloader, processor)
+    validation(model_val, val_dataloader, processor) 
