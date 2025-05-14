@@ -1,0 +1,3 @@
+[submodule "SAM-Med3D/CVPR-MedSegFMCompetition"]
+	path = SAM-Med3D/CVPR-MedSegFMCompetition
+	url = https://github.com/sebasmos/luxor-cvpr
