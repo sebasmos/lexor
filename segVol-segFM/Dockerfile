@@ -14,7 +14,6 @@ RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted
     echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse" >> /etc/apt/sources.list 
 
-
 RUN echo /etc/apt/sources.list
 
 # 更新包列表
@@ -48,9 +47,11 @@ COPY . /workspace/
 ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "segvol", "sh", "infer_case.sh"]
 
 # docker container run --gpus "device=0" -m 8G --name segvol --rm -v $PWD/inputs/:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ segvol:e2000
-  
 
 # docker build -t segvol:e2000 .
 
 # docker save segvol:e2000 | 'C:\Program Files\7-Zip\7z.exe' a -tgzip segvol_e2000.tar.gz
 # docker save segvol:e2000 | & "C:\Program Files\7-Zip\7z.exe" a -tgzip segvol_e2000.tar.gz -si
+
+# docker container run --gpus "device=0" -m 8G --name segvol --rm -v /home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ luxor-v2:latest
+# docker build -t luxor-v2:ca2cb4ce1674 .

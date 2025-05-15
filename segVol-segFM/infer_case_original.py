@@ -11,32 +11,12 @@ def load_item(npz_file, preprocessor):
     file_path = npz_file
     npz = np.load(file_path, allow_pickle=True)
     imgs = npz['imgs']
-    print(f"Keys:", list(npz.keys()))
     # gts = npz['gts']
     
     imgs = preprocessor.preprocess_ct_case(imgs)   # (1, H, W, D)
-    # Use default box covering the whole image if 'boxes' is missing
-    if 'boxes' in npz:
-        boxes = npz['boxes']  # a list of bounding box prompts
-    else:
-        print(f"Warning: 'boxes' missing in {file_path}, using entire image as default")
-        _, H, W, D = imgs.shape
-        boxes = [[0, 0, 0, H, W, D]]
-    
+    boxes = npz['boxes'] # a list of bounding box prompts
     cube_boxes = []
-    el = 0
     for std_box in boxes:
-        # Ensure std_box is a dictionary with the required keys
-        if isinstance(std_box, list) and len(std_box) == 6:
-            std_box = {
-                'z_min': std_box[0],
-                'z_mid_y_min': std_box[1],
-                'z_mid_x_min': std_box[2],
-                'z_max': std_box[3],
-                'z_mid_y_max': std_box[4],
-                'z_mid_x_max': std_box[5]
-            }
-        el+=1
         binary_cube = build_binary_cube_dict(std_box, imgs.shape[1:])
         cube_boxes.append(binary_cube)
     cube_boxes = torch.stack(cube_boxes, dim=0)
@@ -99,21 +79,14 @@ if __name__ == '__main__':
     model_val.eval()
     model_val.to(device)
 
+    
     out_dir = "./outputs"
     os.makedirs(out_dir, exist_ok=True)
 
     npz_files = glob("/home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/*.npz")
-    missing_boxes_count = 0  # Counter for files missing 'boxes'
-
-    with tqdm(total=len(npz_files), desc="Processing files") as pbar:
-        for npz_file in npz_files:
-            data_item = load_item(npz_file, processor)
-            if 'Warning: \'boxes\' missing' in data_item.get('warnings', ''):
-                missing_boxes_count += 1
-            final_preds = infer_case(model_val, data_item, processor, device)
-            output_path = os.path.join(out_dir, os.path.basename(npz_file))
-            np.savez_compressed(output_path, segs=final_preds)
-            pbar.update(1)
-
-    print(f'Done. Total files processed: {len(npz_files)}')
-    print(f'Total files missing "boxes": {missing_boxes_count}')
+    for npz_file in npz_files:
+        data_item = load_item(npz_file, processor)
+        final_preds = infer_case(model_val, data_item, processor, device)
+        output_path = os.path.join(out_dir, os.path.basename(npz_file))
+        np.savez_compressed(output_path, segs=final_preds)
+    print('done')
