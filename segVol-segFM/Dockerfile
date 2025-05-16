@@ -30,7 +30,8 @@ RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pk
 
 # 添加环境文件并创建环境
 COPY environment.yml .
-RUN conda env create -f environment.yml
+# RUN conda env create -f environment.yml
+RUN conda env create -f environment.yml --verbose
 
 # 设置Shell以使用conda环境
 SHELL ["conda", "run", "-n", "segvol", "/bin/bash", "-c"]
