@@ -13,6 +13,10 @@ weights:
 gdown 1dgM5slT5kDV3D_6k_vGpGqU5yB1nTwCL
 ```
 
+Training
+
+`torchrun --nproc_per_node=2 train.py`
+
 ⸻
 
 ✅ 2. predict.sh

@@ -175,14 +175,14 @@ if __name__ == '__main__':
     # set base parameters
     batch_size = 4
     num_workers = 4
-    num_epochs = 5
+    num_epochs = 3000
     initial_lr = 1e-5
     eta_min = 1e-6
-    train_root_path = '/hpc2hdd/home/ydu709/data/3D_train_npz_random_10percent_16G'
+    train_root_path = '/home/sebastian/codes/repo_clean/luxor-cvpr/segVol-segFM/3D_train_npz_random_10percent_16G'
     #train_root_path = ""
-    resume_checkpoint = '../weights/epoch_2000_loss_0.2232.pth'
-    # resume_checkpoint = './SegVol_v1.pth'
-    save_dir = './ckpts_fm3d_segvol'
+    #resume_checkpoint = '../weights/epoch_2000_loss_0.2232.pth'
+    resume_checkpoint = '../weights/SegVol_v1.pth'
+    save_dir = './ckpts_segvol_v1_ptrained'
     ###########################
     model_dir = './segvol'
     os.environ['TOKENIZERS_PARALLELISM'] = 'false'
