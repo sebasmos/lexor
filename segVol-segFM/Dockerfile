@@ -14,30 +14,49 @@ RUN echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble main restricted
     echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
     echo "deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ noble-backports main restricted universe multiverse" >> /etc/apt/sources.list 
 
+
+RUN echo /etc/apt/sources.list
+
+# 更新包列表
 RUN apt-get update
 
-# 安装依赖
+# 安装gcc
 RUN apt-get install -y --no-install-recommends \
     gcc \
     build-essential \
     libc6-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# 配置conda镜像
+# 配置conda使用清华镜像源
 RUN conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ && \
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ && \
     conda config --set show_channel_urls yes
 
-# 添加环境文件并创建环境
+# 复制环境文件
 COPY environment.yml .
-# RUN conda env create -f environment.yml
-RUN conda env create -f environment.yml --verbose
+
+# 创建Conda环境
+RUN conda env create -f environment.yml
 
 # 设置Shell以使用conda环境
 SHELL ["conda", "run", "-n", "segvol", "/bin/bash", "-c"]
 
-# 复制代码
+# 复制你的代码
 COPY . /workspace/
 
-# 设置默认启动命令
-CMD ["sh", "predict.sh"]
+# 设置容器启动时运行的命令
+ENTRYPOINT ["conda", "run", "--no-capture-output", "-n", "segvol", "sh", "infer_case.sh"]
+
+# docker container run --gpus "device=0" -m 8G --name segvol --rm -v $PWD/inputs/:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ segvol:e2000
+# docker container run --gpus "device=0" -m 8G --name lexor --rm -v $PWD/../../demo_cases:/workspace/inputs/ -v $PWD/../outputs/:/workspace/outputs/ -v $PWD/../weights/:/workspace/weights/ lexor:latest
+
+# docker build -t segvol:e2000 .
+
+# docker save segvol:e2000 | 'C:\Program Files\7-Zip\7z.exe' a -tgzip segvol_e2000.tar.gz
+# docker save segvol:e2000 | & "C:\Program Files\7-Zip\7z.exe" a -tgzip segvol_e2000.tar.gz -si
+
+
+# sebastian
+# 
+# docker container run --gpus "device=0" -m 8G --name lexor --rm -v $PWD/../../demo_cases:/workspace/inputs/ -v $PWD/../outputs/:/workspace/outputs/ -v $PWD/../weights/:/workspace/weights/ lexor:latest
+# docker container run --gpus "device=0" -m 8G --name lexor --rm -v /home/sebastian/codes/data/CVPR-2025-CHALLENGE/small_sample:/workspace/inputs/ -v $PWD/outputs/:/workspace/outputs/ -v $PWD/../weights/:/workspace/weights/ lexor:latest
