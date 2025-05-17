@@ -1,6 +1,6 @@
 *.npz
 **/*.npz/
-**/*.txt
+#**/*.txt
 **/*.jpg
 *.zip
 **/*.zip/
@@ -8,8 +8,8 @@
 **/*.pdf
 *.pdf
 **/*.zip
-**/*.json
-*.json
+#**/*.json
+#*.json
 **/*.so
 *.so
 **/*.cu
@@ -17,7 +17,7 @@
 **/*.jsonl
 *.jsonl
 *.zip
-*.txt
+#*.txt
 **/*.pth.tar
 *.pth.tar
 **/*.tiff

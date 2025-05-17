@@ -175,11 +175,12 @@ if __name__ == '__main__':
     # set base parameters
     batch_size = 4
     num_workers = 4
-    num_epochs = 3000
+    num_epochs = 5
     initial_lr = 1e-5
     eta_min = 1e-6
     train_root_path = '/hpc2hdd/home/ydu709/data/3D_train_npz_random_10percent_16G'
-    resume_checkpoint = './epoch_2000_loss_0.2232.pth'
+    #train_root_path = ""
+    resume_checkpoint = '../weights/epoch_2000_loss_0.2232.pth'
     # resume_checkpoint = './SegVol_v1.pth'
     save_dir = './ckpts_fm3d_segvol'
     ###########################
