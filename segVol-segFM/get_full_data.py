@@ -1,9 +1,9 @@
-define output dir where data will be stored
-define the input dir so just the anme fo the folder i wanna download, instead of the fixed one below from huggingface_hub import login
-
-# Replace 'your-access-token' with your actual Hugging Face token
-login(token="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")from huggingface_hub import hf_hub_download, list_repo_files
+from huggingface_hub import login, hf_hub_download, list_repo_files
 import os
+
+# Authenticate with Hugging Face
+login(token="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")
+
 
 repo_id = "junma/CVPR-BiomedSegFM"
 subfolder = "3D_val_npz"
