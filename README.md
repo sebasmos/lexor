@@ -13,9 +13,11 @@ weights:
 gdown 1dgM5slT5kDV3D_6k_vGpGqU5yB1nTwCL
 ```
 
-Training
+✅ Training
 
-`torchrun --nproc_per_node=2 train.py`
+- Get SegVol1 checkpoint: [Drive](https://drive.google.com/file/d/1FPj_tiITss5vJF91SrfPEURH6CUEmo4u/view)
+
+`torchrun  --nproc_per_node=2 train_fast.py`
 
 ⸻
 
