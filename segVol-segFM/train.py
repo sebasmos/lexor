@@ -173,8 +173,8 @@ def train_one_epoch(model, train_dataloader, optimizer, epoch):
 
 if __name__ == '__main__':
     # set base parameters
-    batch_size = 4
-    num_workers = 4
+    batch_size = 1
+    num_workers = 1
     num_epochs = 3000
     initial_lr = 1e-5
     eta_min = 1e-6

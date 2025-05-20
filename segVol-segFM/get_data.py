@@ -6,8 +6,8 @@ login(token="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")
 
 # Define repository and target subfolder
 repo_id = "junma/CVPR-BiomedSegFM"
-subfolder = "3D_train_npz_random_10percent_16G"  # CHANGE THIS to the folder you want
-
+#subfolder = "3D_train_npz_random_10percent_16G"  # CHANGE THIS to the folder you want
+subfolder = "3D_train_npz_all"
 # Make local output directory
 os.makedirs(subfolder, exist_ok=True)
 
