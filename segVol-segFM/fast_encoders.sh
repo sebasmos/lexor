@@ -7,12 +7,11 @@
 #SBATCH --partition=csgpu                     # Use GPU partition for CS users
 #SBATCH --gres=gpu:2                          # Request 2 GPUs per node
 #SBATCH --ntasks-per-node=2                   # Match number of GPUs per node
-#SBATCH -t 30:00:00                           # Maximum run time (30 hours)
+#SBATCH -t 00:50:00                           # Maximum run time (30 hours)
 #SBATCH --mail-type=ALL                       # Send email on start, end, and failure
 #SBATCH --mail-user=viraj.aher@ucd.ie         # Email address for notifications
 #SBATCH --output=logs/%x_%j.out               # Log file (%x = job name, %j = job ID)
 #SBATCH --error=logs/%x_%j.err                # Error log file
-#SBATCH --nodelist=sonicgpu21
 ####################################
 # Environment Setup
 ####################################

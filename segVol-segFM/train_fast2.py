@@ -229,7 +229,7 @@ def benchmark_encoder_speed(model, device, input_shape=(4, 1, 32, 256, 256), num
     # Warmup
     for _ in range(10):
         with torch.no_grad():
-            _ = model.module.model.model.image_encoder(dummy_input)
+            _ = model.module.model.image_encoder(dummy_input)
     
     # Benchmark
     torch.cuda.synchronize()
@@ -237,7 +237,7 @@ def benchmark_encoder_speed(model, device, input_shape=(4, 1, 32, 256, 256), num
     
     for _ in range(num_runs):
         with torch.no_grad():
-            _ = model.module.model.model.image_encoder(dummy_input)
+            _ = model.module.model.image_encoder(dummy_input)
     
     torch.cuda.synchronize()
     end_time = time.time()
@@ -351,7 +351,7 @@ if __name__ == '__main__':
         print(f"Model created with encoder: {fast_encoder_type}", flush=True)
         # Print model info
         total_params = sum(p.numel() for p in model.parameters())
-        encoder_params = sum(p.numel() for p in model.model.model.image_encoder.parameters())
+        encoder_params = sum(p.numel() for p in model.model.image_encoder.parameters())
         print(f"Total parameters: {total_params:,}", flush=True)
         print(f"Encoder parameters: {encoder_params:,} ({encoder_params/total_params*100:.1f}%)", flush=True)
 
@@ -363,7 +363,7 @@ if __name__ == '__main__':
 
     optimizer = torch.optim.AdamW(model.parameters(), lr=initial_lr, weight_decay=1e-5)
 
-    start_epoch, best_loss = load_checkpoint(resume_ckpt, device, model, optimizer, local_rank)
+    start_epoch, best_loss = load_checkpoint(resume_ckpt, device, model, optimizer)
 
     train_dataset = SegDatasetTrain(train_files, processor)
     train_sampler = DistributedSampler(train_dataset)
