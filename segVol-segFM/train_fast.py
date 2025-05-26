@@ -202,8 +202,8 @@ if __name__ == '__main__':
     num_workers  = 4
     num_epochs   = 3000
     initial_lr   = 1e-5
-    train_root   = '/home/sebastian/codes/repo_clean/luxor-cvpr/segVol-segFM/3D_train_npz_random_10percent_16G'
-    resume_ckpt  = '../weights/SegVol_v1.pth'
+    train_root   = '/scratch/vaher/SegFM3D/3D_train_npz_random_10percent_16G'
+    resume_ckpt  = 'SegVol_v1.pth'
     save_dir     = './ckpts_segvol_v1_ptrained'
     model_dir    = './segvol'
 
