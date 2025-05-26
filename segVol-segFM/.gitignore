@@ -1,0 +1,2 @@
+ckpts_*/logs/*.tfevents.*
+*.tar.gz
