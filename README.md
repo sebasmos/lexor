@@ -19,6 +19,10 @@ gdown 1dgM5slT5kDV3D_6k_vGpGqU5yB1nTwCL
 
 `torchrun  --nproc_per_node=2 train_fast.py`
 
+- Fast encoders versiom
+
+`torchrun --nproc_per_node=2   train_fast2.py     --fast_encoder_type mobilenet_2_5d     --batch_size 1     --save_dir "./ckpts_mobilenet_2_5d"     --num_epochs 3000     --initial_lr 1e-5     --train_root "/home/sebastian/codes/repo_clean/luxor-cvpr_own/segVol-segFM/3D_train_npz_random_10percent_16G"     --resume_ckpt "/home/sebastian/codes/repo_clean/luxor-cvpr_mygit/segVol-segFM/ckpts_mobilenet_2_5d/epoch_50_loss_0.6235_mobilenet_2_5d.pth"     --model_dir "./segvol"`
+
 ⸻
 
 ✅ 2. predict.sh
