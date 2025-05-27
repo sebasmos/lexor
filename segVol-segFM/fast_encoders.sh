@@ -120,6 +120,18 @@ torchrun \
     --resume_ckpt "SegVol_v1.pth" \
     --model_dir "./segvol"
 
+torchrun --nproc_per_node=$2 \
+  train_fast2.py \
+    --fast_encoder_type mobilenet_2_5d \
+    --batch_size 4 \
+    --save_dir "./ckpts_mobilenet_2_5d" \
+    --num_epochs 3000 \
+    --initial_lr 1e-5 \
+    --train_root "./3D_train_npz_random_10percent_16G" \
+    --resume_ckpt "SegVol_v1.pth" \
+    --model_dir "./segvol"
+
+
 ####################################
 # Post-run Info
 ####################################

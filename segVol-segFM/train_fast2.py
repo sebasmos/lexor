@@ -1,4 +1,5 @@
 """
+torchrun --nproc_per_node=2   train_fast2.py     --fast_encoder_type mobilenet_2_5d     --batch_size 2     --save_dir "./ckpts_mobilenet_2_5d"     --num_epochs 3000     --initial_lr 1e-5     --train_root "/home/sebastian/codes/repo_clean/luxor-cvpr_own/segVol-segFM/3D_train_npz_random_10percent_16G"     --resume_ckpt "/home/sebastian/codes/repo_clean/luxor-cvpr_mygit/segVol-segFM/ckpts_mobilenet_2_5d/epoch_25_loss_0.2753_mobilenet_2_5d_2025.pth"     --model_dir "./segvol"
 SegVol DDP training script (with debug output for SLURM)
 --------------------------------------------------------
 • Adds memory-friendly tweaks
@@ -25,9 +26,6 @@ from validation import validation, SegDatasetTest
 import socket
 import sys
 import traceback
-
-
-
 
 
 def load_checkpoint(checkpoint_path, device, model, optimizer):

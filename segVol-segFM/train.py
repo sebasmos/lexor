@@ -181,7 +181,7 @@ if __name__ == '__main__':
     train_root_path = '/home/sebastian/codes/repo_clean/luxor-cvpr/segVol-segFM/3D_train_npz_random_10percent_16G'
     #train_root_path = ""
     #resume_checkpoint = '../weights/epoch_2000_loss_0.2232.pth'
-    resume_checkpoint = '../weights/SegVol_v1.pth'
+    resume_checkpoint = 'ckpts_mobilenet_2_5d/epoch_25_loss_0.2753_mobilenet_2_5d_2025.pth'
     save_dir = './ckpts_segvol_v1_ptrained'
     ###########################
     model_dir = './segvol'
