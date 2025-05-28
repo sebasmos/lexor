@@ -13,7 +13,7 @@ python infer_case_parametrized.py \
     --data_glob "/home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/*.npz" \
     --model_dir ./segvol \
     --ckpt ./ckpts_mobilenet_2_5d/epoch_100_loss_0.2663_mobilenet_2_5d.pth \
-    --out_dir ./outputs_epoch_100_loss_0.2663_mobilenet_2_5d_v2 \
+    --out_dir ./outputs_epoch_100_loss_0.2663_mobilenet_2_5d \
     --device cuda:0
 
 
