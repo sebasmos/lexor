@@ -1,0 +1,10 @@
+.git
+__pycache__/
+*.pyc
+*.pkl
+*.npz
+*.log
+outputs/
+inputs/
+models/
+*.ipynb
