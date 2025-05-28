@@ -88,7 +88,7 @@ if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model_dir = './segvol'
     os.environ['TOKENIZERS_PARALLELISM'] = 'false'
-    ckpt_path = './ckpts_mobilenet_2_5d/epoch_50_loss_0.6235_mobilenet_2_5d.pth'
+    ckpt_path = './ckpts_mobilenet_2_5d/epoch_100_loss_0.2663_mobilenet_2_5d.pth'
     clip_tokenizer = AutoTokenizer.from_pretrained(model_dir)
     config = AutoConfig.from_pretrained(model_dir, trust_remote_code=True)
     model_val = SegVolModel(config)
@@ -99,7 +99,7 @@ if __name__ == '__main__':
     model_val.eval()
     model_val.to(device)
 
-    out_dir = "./outputs"
+    out_dir = "outputs_epoch_100_loss_0.2663_mobilenet_2_5d"
     os.makedirs(out_dir, exist_ok=True)
 
     npz_files = glob("/home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/*.npz")

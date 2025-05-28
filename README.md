@@ -1,6 +1,10 @@
 # Lexor submission
 
 
+`train_fast2.py`: Implementing fast encoders
+
+`train_fast3.py`: commenting out validation phase
+
 ✅ env
 
 ```

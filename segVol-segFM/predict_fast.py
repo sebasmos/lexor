@@ -15,7 +15,7 @@ import argparse
 # ------------------------------------------------------------------
 torch.backends.cuda.matmul.allow_tf32 = True        # safe precision cut
 device = torch.device("cuda:0")
-output_dir = "output_latest"
+output_dir = "epoch_100_loss_0.2663_mobilenet_2_5d"
 os.makedirs(output_dir, exist_ok=True)
 
 # --------------------------  DATASET  -----------------------------
@@ -106,7 +106,7 @@ def main():
 
     os.environ["TOKENIZERS_PARALLELISM"] = "false"
     model_dir = "./segvol"
-    ckpt      = "./epoch_2000_loss_0.2232.pth"
+    ckpt = './ckpts_mobilenet_2_5d/epoch_100_loss_0.2663_mobilenet_2_5d.pth'
 
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
     cfg       = AutoConfig.from_pretrained(model_dir, trust_remote_code=True)
