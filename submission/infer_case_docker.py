@@ -89,7 +89,7 @@ if __name__ == '__main__':
     model_dir = './segvol'
     os.environ['TOKENIZERS_PARALLELISM'] = 'false'
     # ckpt_path = '/workspace/segvol/weights/best_model.pth'
-    ckpt_path = '/workspace/segvol/weights/epoch_200_loss_0.2428_mobilenet_2_5d.pth'
+    ckpt_path = '/workspace/segvol/weights/epoch_50_loss_0.2837_mobilenet_2_5d.pth'
     
     clip_tokenizer = AutoTokenizer.from_pretrained(model_dir)
     config = AutoConfig.from_pretrained(model_dir, trust_remote_code=True)
@@ -105,7 +105,7 @@ if __name__ == '__main__':
     out_dir = "/workspace/outputs"
     os.makedirs(out_dir, exist_ok=True)
 
-    # npz_files = glob("/home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/*.npz")
+    # npz_files = glob("./3D_val_npz/3D_val_npz/*.npz")
     npz_files = glob("inputs/*.npz")
     missing_boxes_count = 0  # Counter for files missing 'boxes'
 

@@ -36,12 +36,26 @@ python infer_case_parametrized_fast.py \
         --out_dir ./outputs_epoch_175_loss_0.2454_mobilenet_2_5d.pth \
         --device cuda:1
 
+        
+todo
+
 python infer_case_parametrized_fast.py \
         --data_glob "/home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/*.npz" \
         --model_dir ./segvol \
-        --ckpt ./ckpts_mobilenet_2_5d/epoch_200_loss_0.2428_mobilenet_2_5d.pth \
-        --out_dir ./outputs_epoch_200_loss_0.2428_mobilenet_2_5d.pth \
+        --ckpt ./ckpts_mobilenet_2_5d/epoch_50_loss_0.2837_mobilenet_2_5d.pth \
+        --out_dir ./outputs_epoch_50_loss_0.2837_mobilenet_2_5d.pth \
         --device cuda:1
+
+python infer_case_parametrized_fast.py \
+        --data_glob "/home/sebastian/codes/data/CVPR-2025-CHALLENGE/3D_val_npz/3D_val_npz/*.npz" \
+        --model_dir ./segvol \
+        --ckpt ./ckpts_mobilenet_2_5d/epoch_50_loss_0.6235_mobilenet_2_5d.pth \
+        --out_dir ./outputs_epoch_50_loss_0.6235_mobilenet_2_5d.pth \
+        --device cuda:1
+
+scp epoch_50_loss_0.2837_mobilenet_2_5d.pth scajasordo@login5.ucd.ie:/home/people/scajasordo/scratch/scajasordo/luxor-cvpr/segVol-segFM/ckpt_mobilenet
+scp epoch_50_loss_0.6235_mobilenet_2_5d.pth scajasordo@login5.ucd.ie:/home/people/scajasordo/scratch/scajasordo/luxor-cvpr/segVol-segFM/ckpt_mobilenet
+
 """
 
 from __future__ import annotations
