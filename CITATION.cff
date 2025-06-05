@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+title: >-
+  MobileSeg3D: A Lightweight Framework for Multi-Modality 3D Medical Image Segmentation
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - family-names: "Aher"
+    given-names: "Viraj"
+  - family-names: "Salas Villa"
+    given-names: "Eliana"
+  - family-names: "García"
+    given-names: "Laura"
+    orcid: "0009-0004-0709-8028"
+  - family-names: "Torres"
+    given-names: "Luis"
+    orcid: "0009-0001-0706-0626"
+  - family-names: "Verma"
+    given-names: "Vinay K"
+    orcid: "0009-0009-4650-9666"
+  - family-names: "Cajas Ordóñez"
+    given-names: "Sebastián A."
+    orcid: "0000-0003-0579-6178"
+repository-code: 'https://github.com/lexorcvpr/lexor-cvpr-2025'
+license: MIT
+date-released: '2025-06-04'
