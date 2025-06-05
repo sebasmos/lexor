@@ -2,7 +2,7 @@ from huggingface_hub import login, hf_hub_download, list_repo_files
 import os
 
 # Authenticate with Hugging Face
-login(token="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")
+login(token="xxx")
 
 # Define repository and target subfolder
 repo_id = "junma/CVPR-BiomedSegFM"
