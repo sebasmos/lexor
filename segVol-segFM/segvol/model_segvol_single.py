@@ -9,6 +9,12 @@ import torch.nn as nn
 import torch.nn.functional as F
 import random
 import os
+
+import sys
+print(os.listdir("."))
+sys.path.append("./segvol/")
+from fast_encoders import FastEncoderFactory
+
 class SegVolConfig(PretrainedConfig):
     model_type = "segvol"
 
@@ -28,7 +34,7 @@ class SegVolModel(PreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
         sam_model = _build_sam(
-            image_encoder_type='vit',
+            image_encoder_type=self.config.fast_encoder_type,
             embed_dim = 768,
             patch_size=self.config.patch_size,
             checkpoint=None,
@@ -1204,18 +1210,22 @@ def _build_sam(
     pos_embed = 'perceptron'
     dropout_rate = 0.0
     
-    image_encoder=ViT(
-        in_channels=1,
-        img_size=image_size,
-        patch_size=patch_size,
-        hidden_size=embed_dim,
-        mlp_dim=mlp_dim,
-        num_layers=num_layers,
-        num_heads=num_heads,
-        pos_embed=pos_embed,
-        classification=False,
-        dropout_rate=dropout_rate,
-    )
+    # image_encoder=ViT(
+    #     in_channels=1,
+    #     img_size=image_size,
+    #     patch_size=patch_size,
+    #     hidden_size=embed_dim,
+    #     mlp_dim=mlp_dim,
+    #     num_layers=num_layers,
+    #     num_heads=num_heads,
+    #     pos_embed=pos_embed,
+    #     classification=False,
+    #     dropout_rate=dropout_rate,
+    # )
+
+    encoder = FastEncoderFactory.create_encoder(image_encoder_type) # eg 'fast_vit'
+    image_encoder =  encoder  
+    
     image_embedding_size = [int(item) for item in (np.array(image_size) / np.array(patch_size))]
 
     if checkpoint is not None:

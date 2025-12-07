@@ -54,3 +54,4 @@
 .ipynb_checkpoints/
 /guides
 /Soundmaps (Sigma-Phi)/R
+*.log
